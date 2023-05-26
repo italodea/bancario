@@ -17,8 +17,8 @@ const port = 3000;
 
 app.post('/account/create', async function (req, res) {
     if (!req.body.hasOwnProperty('id') || !req.body.hasOwnProperty('type'))
-        return res.status(400).json({ "error": true, "message": "Required parameter missing" });
-
+    return res.status(400).json({ "error": true, "message": "Required parameter missing" });
+    
     else {
         try {
             req.body.id += "";
@@ -31,11 +31,20 @@ app.post('/account/create', async function (req, res) {
             });
 
             if (row == null) {
+                var ammount = 0;
                 if (req.body.type == "Simples") {
+                    if(!req.body.hasOwnProperty('balance'))
+                        return res.status(400).json({ "error": true, "message": "Required parameter missing" });                        
+                    
 
+                    ammount = parseFloat(req.body.balance)
+                    if (!(ammount && ammount >= 0))
+                        return res.status(400).json({ "error": true, "message": "Required parameter invalid." });
+                    
                     await db.Accounts.create({
                         account: id,
-                        balance: 0
+                        balance: 0,
+                        type: "Simples"
                     });
 
                 } else if (req.body.type == "Bonus") {
@@ -59,17 +68,15 @@ app.post('/account/create', async function (req, res) {
                     return res.status(400).json({ "error": true, "message": "Wrong type for account." });
                 }
 
-                var acc = req.body.type == "Bonus" ? 
-                {
+                var acc = {
                     "id": id,
-                    "balance": 0,
-                    "type": "Bonus",
-                    "bonus_points": 10
-                } : {
-                    "id": id,
-                    "balance": 0,
-                    "type": req.body.type
+                    "balance": ammount,
+                    "type": req.body.type,
                 };
+
+                if (acc.type == "Bonus") {
+                    acc.bonus_points = 10;
+                }
 
                 return res.json({ "error": false, "data": acc });
             } else {
@@ -86,7 +93,7 @@ app.get('/account/balance/:id', async (req, res) => {
         return res.status(400).json({ "error": true, "message": "Required parameter missing." });
 
     req.params.id += "";
-    var id = req.params.id.replace('-', '');
+    var id = req.params.id.replace('-', '')
 
     try {
         var row = await db.Accounts.findOne({
