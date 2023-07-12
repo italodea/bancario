@@ -3,8 +3,8 @@ name: CI Release
 on:
   push:
     tags:
-    - 'rc-*'
-
+    - '*'
+    
 jobs:
   build:
     runs-on: ubuntu-latest
