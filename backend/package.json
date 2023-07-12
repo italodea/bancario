@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "npx mocha src/tests/Account.test.js",
+    "start": "nodemon src/index.js"
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon src/index.js",
     "eslint:check": "npx eslint ."
