@@ -4,6 +4,7 @@ const cors = require('cors');
 var db = require("./database/models.js");
 
 const app = express();
+
 app.use(bodyParser.json());
 app.use(cors({
     "origin": "*",
