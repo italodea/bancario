@@ -1,0 +1,33 @@
+name: CI Release 2
+
+on:
+  push:
+    branches: release
+  pull_request:
+    branches: release
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20.4
+        
+
+      - name: Resolve dependencies
+        working-directory: ./backend
+        run: npm ci
+
+      - name: Execute unit tests
+        working-directory: ./backend
+        run: npm test
+
+      - name: Execute ESLint checks
+        working-directory: ./backend
+        run: npm run eslint:check
