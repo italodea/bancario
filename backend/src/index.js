@@ -13,7 +13,7 @@ app.use(cors({
 }));
 
 
-const port = 3000;
+const port = 8080;
 
 app.post('/account/create', async function (req, res) {
     if (!req.body.hasOwnProperty('id') || !req.body.hasOwnProperty('type'))

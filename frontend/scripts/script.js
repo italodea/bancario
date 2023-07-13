@@ -20,7 +20,7 @@ function criarConta() {
             redirect: 'error'
         };
 
-        fetch("http://localhost:3000/account/create", requestOptions)
+        fetch("http://localhost:8080/account/create", requestOptions)
             .then(response => response.text())
             .then(result => document.getElementById('criarResposta').innerHTML = result)
             .catch(error => console.log('error', error));
@@ -36,7 +36,7 @@ function consultarConta() {
             redirect: 'error'
         };
 
-        fetch("http://localhost:3000/account/balance/" + consultarConta, requestOptions)
+        fetch("http://localhost:8080/account/balance/" + consultarConta, requestOptions)
             .then(response => response.text())
             .then(result => document.getElementById('consultarResposta').innerHTML = result)
             .catch(error => console.log('error', error));
@@ -61,7 +61,7 @@ function creditarConta() {
             redirect: 'error'
         };
 
-        fetch("http://localhost:3000/account/credit/", requestOptions)
+        fetch("http://localhost:8080/account/credit/", requestOptions)
             .then(response => response.text())
             .then(result => document.getElementById('creditarResposta').innerHTML = result)
             .catch(error => console.log('error', error));
@@ -88,7 +88,7 @@ function debitarConta() {
             redirect: 'error'
         };
 
-        fetch("http://localhost:3000/account/debit/", requestOptions)
+        fetch("http://localhost:8080/account/debit/", requestOptions)
             .then(response => response.text())
             .then(result => document.getElementById('debitarResposta').innerHTML = result)
             .catch(error => console.log('error', error));
@@ -116,7 +116,7 @@ function transferirValor() {
             redirect: 'error'
         };
 
-        fetch("http://localhost:3000/account/transfer/", requestOptions)
+        fetch("http://localhost:8080/account/transfer/", requestOptions)
             .then(response => response.text())
             .then(result => document.getElementById('transferirResposta').innerHTML = result)
             .catch(error => console.log('error', error));
@@ -155,7 +155,7 @@ function renderJuros() {
         redirect: 'follow'
     };
 
-    fetch("http://localhost:3000/account/yieldInterest/", requestOptions)
+    fetch("http://localhost:8080/account/yieldInterest/", requestOptions)
         .then(response => response.text())
         .then(result => result => document.getElementById('renderResposta').innerHTML = result)
         .catch(error => console.log('error', error));
