@@ -36,3 +36,4 @@ As ferramentas utilizadas foram:
 - [Fernando Almeida](https://github.com/feronando) 
 - [Isaac Medeiros](https://github.com/zacmeedeiros)
 - [Ítalo de Azevedo](https://github.com/italodea)
+..
